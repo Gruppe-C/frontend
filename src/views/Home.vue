@@ -21,7 +21,12 @@
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  created() {
+    if (this.$store.getters.isLoggedIn) {
+      this.$router.push({name: 'Group'});
+    }
+  }
 }
 </script>
 
