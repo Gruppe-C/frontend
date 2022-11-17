@@ -3,12 +3,7 @@
     <v-responsive class="d-flex align-center text-center fill-height" v-if="user">
       <h1>Account</h1>
       <div class="img-container">
-        <v-avatar size="130" v-if="user.image" style="border: solid;">
-          <v-img :src="user.image.url"></v-img>
-        </v-avatar>
-        <v-avatar v-else>
-          <h1>{{ user.username.at(0) + user.username.at(user.username.length - 1) }}</h1>
-        </v-avatar>
+        <user-image :user="user" />
         <v-btn icon size="40" class="img-edit">
           <v-icon @click="chooseFiles" size="20">mdi-pencil</v-icon>
           <input id="fileUpload" type="file" @change="changeProfileImage" accept="image/*" hidden>
@@ -49,10 +44,11 @@
 <script>
 import Navigation from "@/components/Navigation";
 import userService from "@/services/user.service";
+import UserImage from "@/components/user/Image";
 
 export default {
   name: "Profile",
-  components: {Navigation},
+  components: {UserImage, Navigation},
   data() {
     return {
       user: undefined,

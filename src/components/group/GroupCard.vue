@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="0" class="card">
+  <v-card elevation="0" class="card" @click="$router.push({ name: 'GroupDetail', params: {id: group.id}})">
     <v-card-title :style="'color: ' + group.color">{{ group.name }}</v-card-title>
     <v-card-subtitle>
       {{ group.members.length }} Mitglieder

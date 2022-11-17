@@ -2,11 +2,13 @@ import {createStore} from 'vuex'
 import router from "@/router";
 import userService from "@/services/user.service";
 import authService from "@/services/auth.service";
+import groupService from "@/services/group.service";
 
 export default createStore({
   state() {
     return {
       token: localStorage.getItem('token') || '',
+      currentGroupId: localStorage.getItem('currentGroupId') || ''
     }
   },
   mutations: {
@@ -23,6 +25,10 @@ export default createStore({
 
       localStorage.removeItem('token')
       router.go(0)
+    },
+    SET_CURRENT_GROUP_ID(state, {id}) {
+      state.currentGroupId = id
+      localStorage.setItem('currentGroupId', id)
     }
   },
   actions: {
@@ -66,6 +72,9 @@ export default createStore({
     },
     logout({commit}) {
       commit('LOGOUT')
+    },
+    updateCurrentGroupId({commit}, id) {
+      commit('SET_CURRENT_GROUP_ID', {id})
     }
   },
   getters: {
@@ -84,6 +93,18 @@ export default createStore({
         }
       }
       return {}
+    },
+    async getCurrentGroup(state) {
+      if (state.currentGroupId) {
+        const response = await groupService.get(state.currentGroupId)
+        const group = response.data
+        if (group?.id) {
+          return group
+        } else {
+          localStorage.removeItem('currentGroupId')
+        }
+      }
+      return null
     },
     isSessionExpired(state) {
       if (state.token) {
