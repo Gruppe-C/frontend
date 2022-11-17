@@ -27,6 +27,22 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       }
+    },
+    {
+      path: '/group/add',
+      name: 'GroupAdd',
+      component: () => import('@/views/group/GroupAdd'),
+      meta: {
+        requiresAuth: true,
+      }
+    },
+    {
+      path: '/group/:id',
+      name: 'GroupDetail',
+      component: () => import('@/views/group/GroupDetail'),
+      meta: {
+        requiresAuth: true,
+      }
     }
   ],
 })
