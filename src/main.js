@@ -6,6 +6,8 @@
 
 // Components
 import App from './App.vue'
+import router from '@/router'
+import store from "@/store";
 
 // Composables
 import { createApp } from 'vue'
@@ -20,4 +22,6 @@ registerPlugins(app)
 
 app
   .use(vuetify)
+  .use(router)
+  .use(store)
   .mount('#app')
