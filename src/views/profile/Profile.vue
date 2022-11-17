@@ -24,6 +24,11 @@
         </div>
       </v-col>
     </v-row>
+    <div class="mt-5">
+      <v-btn color="error" @click="$store.dispatch('logout')">
+        Abmelden
+      </v-btn>
+    </div>
   </v-responsive>
   <navigation />
 </v-container>
