@@ -6,7 +6,6 @@
       <v-btn
         @click="$router.push({ name: 'GroupAdd'})"
         class="float"
-        variant="outlined"
         icon
         size="60"
         color="primary"
