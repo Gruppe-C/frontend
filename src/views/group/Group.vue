@@ -13,15 +13,17 @@
         <v-icon size="30">mdi-plus</v-icon>
       </v-btn>
     </v-responsive>
+    <navigation />
   </v-container>
 </template>
 
 <script>
 import GroupList from "@/components/group/GroupList";
 import groupService from "@/services/group.service";
+import Navigation from "@/components/Navigation";
 export default {
   name: "Group",
-  components: {GroupList},
+  components: {Navigation, GroupList},
   data() {
     return {
       groups: []
@@ -36,8 +38,8 @@ export default {
 <style scoped>
 .float{
   position:fixed;
-  bottom:30px;
-  right:30px;
+  bottom:70px;
+  right:10px;
   text-align:center;
 }
 </style>

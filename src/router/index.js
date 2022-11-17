@@ -21,6 +21,14 @@ const router = createRouter({
       component: () => import('@/views/auth/Register.vue'),
     },
     {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('@/views/profile/Profile.vue'),
+      meta: {
+        requiresAuth: true,
+      }
+    },
+    {
       path: '/group',
       name: 'Group',
       component: () => import('@/views/group/Group.vue'),

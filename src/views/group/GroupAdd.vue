@@ -34,14 +34,17 @@
         </div>
       </v-form>
     </v-responsive>
+    <navigation />
   </v-container>
 </template>
 
 <script>
 import groupService from "@/services/group.service";
+import Navigation from "@/components/Navigation";
 
 export default {
   name: "GroupAdd",
+  components: {Navigation},
   data() {
     return {
       group: {
