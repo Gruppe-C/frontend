@@ -51,6 +51,14 @@ const router = createRouter({
       meta: {
         requiresAuth: true,
       }
+    },
+    {
+      path: '/group/:id/edit',
+      name: 'GroupEdit',
+      component: () => import('@/views/group/GroupEdit'),
+      meta: {
+        requiresAuth: true,
+      }
     }
   ],
 })
