@@ -13,7 +13,7 @@ export default {
   components: {GroupNavigation},
   computed: {
     groupNavigation() {
-      return this.$route.path.startsWith('/group/') && this.$route.params.id || this.$store.state.currentGroupId
+      return this.$route.path.startsWith('/group/') && this.$route.params.id || this.$store.state.currentGroupId && this.$store.getters.isLoggedIn;
     }
   }
 }

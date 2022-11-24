@@ -11,19 +11,25 @@
       <h1>{{ group.name }}</h1>
       <div class="pl-1">
         <v-btn variant="text" color="info" class="pa-0" @click="changeGroup()">
-          Wechseln
           <v-icon>mdi-swap-horizontal</v-icon>
+          Wechseln
+        </v-btn>
+        <br>
+        <v-btn variant="text" color="warning" class="pa-0"
+               @click="$router.push({ name: 'GroupEdit', params: {id: group.id}})">
+          <v-icon>mdi-pencil</v-icon>
+          Bearbeiten
         </v-btn>
         <div class="mt-3">
-          <h3>{{ group.members.length }} {{ group.members.length > 1 ? 'Mitglieder' : 'Mitglied'}}</h3>
-          <user-image class="mt-2 mr-2" v-for="member in group.members" :key="member.id" :user="member" />
+          <h3>{{ group.members.length }} {{ group.members.length > 1 ? 'Mitglieder' : 'Mitglied' }}</h3>
+          <user-image class="mt-2 mr-2" v-for="member in group.members" :key="member.id" :user="member"/>
           <v-btn class="mt-2" v-if="group.members.length === 0" variant="outlined" color="secondary">
             Freunde einladen
           </v-btn>
         </div>
         <div class="mt-3">
           <h3>Besitzer</h3>
-          <user-image class="mt-2" :user="group.owner" />
+          <user-image class="mt-2" :user="group.owner"/>
         </div>
       </div>
     </v-responsive>
@@ -58,7 +64,7 @@ export default {
   methods: {
     changeGroup() {
       this.$store.dispatch('updateCurrentGroupId', undefined)
-      this.$router.push({ name: 'Group'})
+      this.$router.push({name: 'Group'})
     }
   }
 }
