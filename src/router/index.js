@@ -45,7 +45,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/group/:id',
+      path: '/group/:groupId',
       name: 'GroupDetail',
       component: () => import('@/views/group/GroupDetail'),
       meta: {
@@ -53,13 +53,40 @@ const router = createRouter({
       }
     },
     {
-      path: '/group/:id/edit',
+      path: '/group/:groupId/edit',
       name: 'GroupEdit',
       component: () => import('@/views/group/GroupEdit'),
       meta: {
         requiresAuth: true,
       }
-    }
+    },
+    {
+      path: '/group/:groupId/year',
+      name: 'SchoolYear',
+      component: () => import('@/views/year/SchoolYear'),
+      meta: {
+        requiresAuth: true,
+        requiresGroup: true,
+      }
+    },
+    {
+      path: '/group/:groupId/year/:yearId',
+      name: 'SchoolYearDetail',
+      component: () => import('@/views/year/Detail'),
+      meta: {
+        requiresAuth: true,
+        requiresGroup: true,
+      }
+    },
+    {
+      path: '/group/:groupId/year/add',
+      name: 'SchoolYearAdd',
+      component: () => import('@/views/year/Add'),
+      meta: {
+        requiresAuth: true,
+        requiresGroup: true,
+      }
+    },
   ],
 })
 
@@ -77,6 +104,12 @@ router.beforeEach((to, from, next) => {
       } else {
         next()
       }
+    }
+  } else if (to.meta.requiresGroup) {
+    if (store.state.currentGroupId) {
+      next()
+    } else {
+      next('/group')
     }
   } else {
     next()
