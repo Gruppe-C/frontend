@@ -10,15 +10,18 @@
     <h1>Schuljahre</h1>
     <v-responsive class="d-flex align-center text-center fill-height mt-2">
       <div v-if="error">
-        <v-alert type="error" density="compact" variant="outlined" class="mb-5">Noch kein Schuljahr angelegt</v-alert>
-        <v-btn variant="outlined" color="success" @click="$router.push({ name: 'SchoolYearAdd', params: { groupId: $route.params.groupId}})">
-          Hinzufügen
-          <v-icon>
-            mdi-plus
-          </v-icon>
-        </v-btn>
+        <v-alert type="error" :icon="false" density="compact" variant="outlined" class="mb-5">Noch kein Schuljahr angelegt</v-alert>
       </div>
       <school-year-list v-else :list="schoolYears"></school-year-list>
+      <v-btn
+        @click="$router.push({ name: 'SchoolYearAdd', params: { groupId: $route.params.groupId}})"
+        class="float"
+        icon
+        size="60"
+        color="primary"
+      >
+        <v-icon size="30">mdi-plus</v-icon>
+      </v-btn>
     </v-responsive>
   </v-container>
 </template>
@@ -52,5 +55,10 @@ export default {
 </script>
 
 <style scoped>
-
+.float{
+  position:fixed;
+  bottom:70px;
+  right:10px;
+  text-align:center;
+}
 </style>
