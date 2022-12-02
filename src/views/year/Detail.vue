@@ -10,34 +10,65 @@
     <div v-if="schoolYear">
       <h1>{{ schoolYear.startYear }}/{{ schoolYear.endYear }}</h1>
       <v-responsive class="d-flex align-center text-center fill-height mt-2">
-        <div v-if="error">
-          <v-alert type="error" density="compact" variant="outlined" class="mb-5">Schuljahr nicht gefunden</v-alert>
+        <div v-if="subjectError">
+          <v-alert type="error" :icon="false" density="compact" variant="outlined" class="mb-5">Noch keine Fächer
+            angelegt
+          </v-alert>
         </div>
+        <div v-if="schoolYearError">
+          <v-alert type="error" :icon="false" density="compact" variant="outlined" class="mb-5">Schuljahr nicht
+            gefunden
+          </v-alert>
+        </div>
+        <subject-list v-else :list="subjects"></subject-list>
+        <v-btn
+          @click="$router.push({ name: 'SubjectAdd', params: { groupId: $route.params.groupId, yearId: $route.params.yearId}})"
+          class="float"
+          icon
+          size="60"
+          color="primary"
+        >
+          <v-icon size="30">mdi-plus</v-icon>
+        </v-btn>
       </v-responsive>
     </div>
-
   </v-container>
 </template>
 
 <script>
+import subjectService from "@/services/subject.service";
+import SubjectList from "@/components/subject/SubjectList";
 import schoolYearService from "@/services/schoolyear.service";
 
 export default {
   name: "SchoolYearDetail",
+  components: {SubjectList},
   data() {
     return {
+      subjects: [],
+      schoolYear: undefined,
       loading: true,
-      error: true,
-      schoolYear: undefined
+      schoolYearError: false,
+      subjectError: false
     }
   },
   async created() {
-    const response = await schoolYearService.get(this.$route.params?.groupId, this.$route.params?.yearId)
-    if (response?.data?.id) {
-      this.schoolYear = response.data
-      this.error = false
+    const schoolYear = await schoolYearService.get(this.$store.state.currentGroupId, this.$route.params?.yearId)
+    if (schoolYear?.data?.id) {
+      this.schoolYear = schoolYear.data
+      this.schoolYearError = false
     } else {
-      this.error = true
+      this.schoolYear = undefined
+      this.schoolYearError = true
+    }
+
+    const response = await subjectService.getList(this.$store.state.currentGroupId, this.$route.params.yearId)
+    if (response?.data?.length > 0) {
+      this.subjects = response.data
+      this.subjectError = false
+    } else {
+      this.subjects = []
+      this.subjectError = true
     }
     this.loading = false
   }
@@ -45,5 +76,10 @@ export default {
 </script>
 
 <style scoped>
-
+.float {
+  position: fixed;
+  bottom: 70px;
+  right: 10px;
+  text-align: center;
+}
 </style>

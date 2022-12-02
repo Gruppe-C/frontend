@@ -87,6 +87,24 @@ const router = createRouter({
         requiresGroup: true,
       }
     },
+    {
+      path: '/group/:groupId/year/:yearId/subject/add',
+      name: 'SubjectAdd',
+      component: () => import('@/views/subject/Add'),
+      meta: {
+        requiresAuth: true,
+        requiresGroup: true,
+      }
+    },
+    {
+      path: '/group/:groupId/year/:yearId/subject/:subjectId',
+      name: 'SubjectDetail',
+      component: () => import('@/views/subject/Detail'),
+      meta: {
+        requiresAuth: true,
+        requiresGroup: true,
+      }
+    },
   ],
 })
 
