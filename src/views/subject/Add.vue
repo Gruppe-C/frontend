@@ -77,7 +77,7 @@ export default {
         this.loading = true
         const response = await subjectService.create(this.$route.params.groupId, this.$route.params.yearId, this.subject)
         if (response?.data?.id) {
-          this.$router.push({name: 'SubjectDetail', params: {groupId: response.data.id, yearId: this.$route.params.yearId, subjectId: response.data.id}})
+          this.$router.push({name: 'SubjectDetail', params: {groupId: this.$route.params.groupId, yearId: this.$route.params.yearId, subjectId: response.data.id}})
         } else {
           this.error = response.data.message
         }
