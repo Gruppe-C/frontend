@@ -4,7 +4,7 @@
       <v-icon>mdi-home</v-icon>
     </v-btn>
 
-    <v-btn @click="$router.push({ name: 'SchoolYear' })">
+    <v-btn @click="$router.push({ name: 'SchoolYear', params: { groupId: $store.state.currentGroupId } })">
       <v-icon>mdi-folder</v-icon>
     </v-btn>
 

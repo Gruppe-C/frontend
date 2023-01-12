@@ -18,3 +18,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.float{
+  position:fixed;
+  bottom:70px;
+  right:10px;
+  text-align:center;
+}
+</style>
