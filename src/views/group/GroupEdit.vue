@@ -73,7 +73,7 @@ export default {
     }
   },
   async created() {
-    const response = await groupService.get(this.$route.params?.id)
+    const response = await groupService.get(this.$route.params?.groupId)
     if (response?.data?.id) {
       this.group = response.data
       this.loading = false
@@ -91,7 +91,7 @@ export default {
         this.disabled = true
         const response = await groupService.update(this.group)
         if (response?.data?.id) {
-          this.$router.push({name: 'GroupDetail', params: {id: response.data.id}})
+          this.$router.push({name: 'GroupDetail', params: {groupId: response.data.id}})
         } else {
           this.error = response.data.message
           this.disabled = false

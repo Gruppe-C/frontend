@@ -16,7 +16,7 @@
         </v-btn>
         <br>
         <v-btn variant="text" color="warning" class="pa-0"
-               @click="$router.push({ name: 'GroupEdit', params: {id: group.id}})">
+               @click="$router.push({ name: 'GroupEdit', params: {groupId: group.id}})">
           <v-icon>mdi-pencil</v-icon>
           Bearbeiten
         </v-btn>
@@ -50,7 +50,7 @@ export default {
     }
   },
   async created() {
-    const group = (await groupService.get(this.$route.params?.id)).data
+    const group = (await groupService.get(this.$route.params?.groupId)).data
     if (group?.id) {
       this.$store.dispatch('updateCurrentGroupId', group.id)
       this.group = group

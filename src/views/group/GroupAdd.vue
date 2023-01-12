@@ -76,7 +76,7 @@ export default {
         this.loading = true
         const response = await groupService.create(this.group)
         if (response?.data?.id) {
-          this.$router.push({name: 'GroupDetail', params: {id: response.data.id}})
+          this.$router.push({name: 'GroupDetail', params: {groupId: response.data.id}})
         } else {
           this.error = response.data.message
         }

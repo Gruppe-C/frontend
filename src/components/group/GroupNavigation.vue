@@ -1,10 +1,10 @@
 <template>
   <v-bottom-navigation :elevation="0" grow>
-    <v-btn @click="$router.push({ name: 'GroupDetail', params: { id: $store.state.currentGroupId } })">
+    <v-btn @click="$router.push({ name: 'GroupDetail', params: { groupId: $store.state.currentGroupId } })">
       <v-icon>mdi-home</v-icon>
     </v-btn>
 
-    <v-btn @click="$router.push({ name: 'GroupUser' })">
+    <v-btn @click="$router.push({ name: 'SchoolYear' })">
       <v-icon>mdi-folder</v-icon>
     </v-btn>
 
