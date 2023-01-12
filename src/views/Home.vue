@@ -9,7 +9,7 @@
 
       <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
 
-      <h1 class="text-h2 font-weight-bold">Gruppe C</h1>
+      <h1 class="text-h2 font-weight-bold">Study Buddy</h1>
 
       <div class="mt-3">
         <v-btn color="secondary" @click="$router.push({ name: 'Login'})">Login</v-btn>
